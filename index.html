@@ -1,0 +1,128 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Cartography Studio</title>
+    
+    <!-- Load Leaflet CSS first -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <!-- Load Leaflet.Draw CSS next -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
+    <!-- Load your custom styles last -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="toolbar">
+      <div class="tool-group">
+        <button id="draw-polygon" class="tool-btn">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M3 3v18h18V3H3zm16 16H5V5h14v14z"/>
+            <path d="M7 7h10v10H7z"/>
+          </svg>
+          Draw Polygon
+        </button>
+        <button id="draw-line" class="tool-btn">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+          Draw Line
+        </button>
+        <button id="draw-point" class="tool-btn">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <circle cx="12" cy="12" r="8"/>
+          </svg>
+          Add Point
+        </button>
+      </div>
+
+      <div class="tool-group">
+        <button id="undo-action" class="tool-btn" disabled>
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
+          </svg>
+          Undo
+        </button>
+        <button id="redo-action" class="tool-btn" disabled>
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/>
+          </svg>
+          Redo
+        </button>
+      </div>
+
+      <div class="tool-group">
+        <button id="add-labels" class="tool-btn">Add Labels</button>
+        <button id="add-legend" class="tool-btn">Add Legend</button>
+      </div>
+
+      <div class="tool-group">
+        <button id="export-map" class="tool-btn">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+          </svg>
+          Export Image
+        </button>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div id="map"></div>
+      
+      <div class="side-panel">
+        <div class="layers-panel">
+          <h3>Layers</h3>
+          <div id="layers-list"></div>
+        </div>
+        
+        <div class="properties-panel">
+          <h3>Properties</h3>
+          <div id="feature-properties"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <div id="coordinates"></div>
+      <div id="scale"></div>
+      <div id="projection"></div>
+    </div>
+  </div>
+
+  <!-- Style Editor Modal -->
+  <div id="style-editor" class="modal">
+    <div class="modal-content">
+      <h2>Style Editor</h2>
+      <div class="style-controls">
+        <div class="control-group">
+          <label>Fill Color</label>
+          <input type="color" id="fill-color">
+        </div>
+        <div class="control-group">
+          <label>Stroke Color</label>
+          <input type="color" id="stroke-color">
+        </div>
+        <div class="control-group">
+          <label>Stroke Width</label>
+          <input type="range" id="stroke-width" min="0" max="10" step="0.5">
+        </div>
+        <div class="control-group">
+          <label>Opacity</label>
+          <input type="range" id="opacity" min="0" max="1" step="0.1">
+        </div>
+      </div>
+      <div class="modal-buttons">
+        <button id="apply-style">Apply</button>
+        <button id="close-style-editor">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+    <!-- Load scripts in the correct order -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/togeojson/0.16.0/togeojson.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
